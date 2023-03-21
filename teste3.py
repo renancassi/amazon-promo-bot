@@ -11,20 +11,14 @@ parser = etree.HTMLParser()
 htmlParsed = etree.fromstring(paginaRequest.content, parser)
     
 xpathTitulo = htmlParsed.xpath('//span[@class="a-size-medium a-color-base a-text-normal"]')
-# xpathValor = htmlParsed.xpath('//span[@class="a-offscreen"]')
-
-xpathValorSimbolo = htmlParsed.xpath('//span[@class="a-price-symbol"]/text()')
-xpathValorValor = htmlParsed.xpath('//span[@class="a-price-whole"]/text()')
-xpathValorDecimal = htmlParsed.xpath('//span[@class="a-price-decimal"]/text()')
-xpathValorCentavos = htmlParsed.xpath('//span[@class="a-price-fraction"]/text()')
-xpathValor = ''.join([xpathValorSimbolo[2], xpathValorValor[2], xpathValorDecimal[2], xpathValorCentavos[2]])
-
-
-
+xpathDivValorPai = htmlParsed.xpath('//*[@id="search"]/div[1]/div[1]/div/span[1]/div[1]/div[2]/div/div/div/div/div/div[2]/div/div/div[3]/div[1]/div/div[1][contains(text(), "Capa Comum")]')
+teste = ''
 # print(type(xpathTitulo))
-for titulo,valor in zip(xpathTitulo, [xpathValor]):
+
+for titulo,valor in zip(xpathTitulo, xpathDivValorPai):
     print(titulo.text)
-    print(valor)
+    print(valor.text)
+    print('\n')
     teste = ''
 
 
